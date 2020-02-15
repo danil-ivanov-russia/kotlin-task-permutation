@@ -37,15 +37,15 @@ class Task1Test {
     fun getPermutationsFromArray(array: Array<Any>): Array<Any>{
         val list = array.toList()
         val listOfPermutations = getPermutationsFromList(list).toMutableList()
-        listOfPermutations.replaceAll{ (it as List<Any>).toTypedArray()}
-        //print(listOfPermutations)
+        if (listOfPermutations.size > 1) listOfPermutations.replaceAll{ (it as List<Any>).toTypedArray()}
         return listOfPermutations.toTypedArray()
     }
 
     @Test
     fun getPermutationsArrayTest(){
         val array = arrayOf(1, "test", 3, "string")
-        val resultArray = getPermutationsFromArray(array)
-        resultArray.forEach { println((it as Array<Any>).contentDeepToString()) }
+        val resultArray = getPermutationsFromArray(array as Array<Any>)
+        if (resultArray.size > 1 ) resultArray.forEach { println((it as Array<Any>).contentDeepToString()) }
+        else println(resultArray.first())
     }
 }
